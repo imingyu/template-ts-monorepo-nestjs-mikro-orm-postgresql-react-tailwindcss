@@ -1,0 +1,26 @@
+{
+    "name": "template-ts-monorepo-nestjs-mikro-orm-postgresql-react-tailwindcss",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "clean": "pnpm clean:all",
+        "clean:all": "pnpm clean:cache && pnpm clean:build && pnpm clean:deps",
+        "clean:cache": "rimraf .turbo && rimraf tsconfig.tsbuildinfo && turbo run clean:cache",
+        "clean:deps": "turbo run clean:deps && rimraf node_modules",
+        "clean:build": "rimraf dist && rimraf build && turbo run clean:build",
+        "check-types": "turbo run check-types",
+        "check-update": "pnpm ncu -u --verbose --deep"
+    },
+    "devDependencies": {
+        "@mono-ts/config-tools": "workspace:*",
+        "npm-check-updates": "^22.2.9",
+        "rimraf": "^6.1.3",
+        "turbo": "^2.10.5",
+        "typescript": "^7.0.2",
+        "oxfmt": "^0.59.0",
+        "oxlint": "^1.74.0",
+        "oxlint-tsgolint": "^0.25.0"
+    }
+}
