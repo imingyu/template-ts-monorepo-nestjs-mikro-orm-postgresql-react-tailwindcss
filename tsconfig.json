@@ -1,0 +1,7 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": ["@mono-ts/config-tools/base.tsconfig.json"],
+    "compilerOptions": {
+        "noEmit": true
+    }
+}

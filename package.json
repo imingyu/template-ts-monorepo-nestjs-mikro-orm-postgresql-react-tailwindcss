@@ -5,6 +5,7 @@
     "scripts": {
         "build": "turbo run build",
         "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix",
         "clean": "pnpm clean:all",
         "clean:all": "pnpm clean:cache && pnpm clean:build && pnpm clean:deps",
         "clean:cache": "rimraf .turbo && rimraf tsconfig.tsbuildinfo && turbo run clean:cache",

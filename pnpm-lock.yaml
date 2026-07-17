@@ -44,6 +44,9 @@ importers:
       oxlint-tsgolint:
         specifier: ^0.25.0
         version: 0.25.0
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
 
 packages:
 

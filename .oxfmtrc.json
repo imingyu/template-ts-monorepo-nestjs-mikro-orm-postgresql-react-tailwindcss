@@ -1,4 +1,4 @@
 {
     "$schema": "./node_modules/oxfmt/configuration_schema.json",
-    "extends": ["@mono-ts/config-tools/base-oxfmtrc.json"]
+    "extends": ["@mono-ts/config-tools/base.oxfmtrc.json"]
 }
