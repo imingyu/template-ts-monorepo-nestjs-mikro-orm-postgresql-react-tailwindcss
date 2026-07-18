@@ -1,5 +1,5 @@
 {
-    "name": "@mono-ts/cross-shared",
+    "name": "@mono-ts/shared",
     "version": "0.1.0",
     "description": "shared utils",
     "type": "module",

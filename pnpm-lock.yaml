@@ -48,7 +48,7 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
-  packages/cross-shared:
+  packages/shared:
     devDependencies:
       '@mono-ts/config-tools':
         specifier: workspace:*
@@ -72,11 +72,11 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
-  packages/cross-types:
+  packages/types:
     dependencies:
-      '@mono-ts/cross-shared':
+      '@mono-ts/shared':
         specifier: workspace:*
-        version: link:../cross-shared
+        version: link:../shared
     devDependencies:
       '@mono-ts/config-tools':
         specifier: workspace:*

@@ -1,5 +1,5 @@
 {
-    "name": "@mono-ts/cross-types",
+    "name": "@mono-ts/types",
     "version": "0.1.0",
     "description": "shared types",
     "type": "module",
@@ -25,7 +25,7 @@
         "lint:fix": "oxlint --fix"
     },
     "dependencies": {
-        "@mono-ts/cross-shared": "workspace:*"
+        "@mono-ts/shared": "workspace:*"
     },
     "devDependencies": {
         "@mono-ts/config-tools": "workspace:*",
