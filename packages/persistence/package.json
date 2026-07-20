@@ -1,0 +1,46 @@
+{
+    "name": "@mono-ts/persistence",
+    "version": "0.1.0",
+    "description": "Explicit persistence contracts and MikroORM adapters",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "tsc --project tsconfig.build.json",
+        "dev": "tsc --watch",
+        "clean": "pnpm clean:all",
+        "clean:all": "pnpm clean:cache && pnpm clean:build && pnpm clean:deps",
+        "clean:cache": "rimraf .turbo && rimraf tsconfig.tsbuildinfo",
+        "clean:deps": "rimraf node_modules",
+        "clean:build": "rimraf dist && rimraf build",
+        "check-types": "tsc --project tsconfig.json",
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@mikro-orm/core": "^7.1.7",
+        "@mikro-orm/decorators": "^7.1.7",
+        "@mikro-orm/mysql": "^7.1.7",
+        "@mikro-orm/postgresql": "^7.1.7",
+        "reflect-metadata": "^0.2.2"
+    },
+    "devDependencies": {
+        "@mono-ts/config-tools": "workspace:*",
+        "@types/node": "^26.1.1",
+        "oxfmt": "^0.59.0",
+        "oxlint": "^1.74.0",
+        "oxlint-tsgolint": "^0.25.0",
+        "rimraf": "^6.1.3",
+        "typescript": "^7.0.2",
+        "vitest": "^4.1.10"
+    }
+}

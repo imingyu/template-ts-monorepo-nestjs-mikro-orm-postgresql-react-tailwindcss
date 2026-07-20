@@ -2,6 +2,7 @@
     "name": "template-ts-monorepo-nestjs-mikro-orm-postgresql-react-tailwindcss",
     "version": "1.0.0",
     "description": "",
+    "packageManager": "pnpm@10.12.1",
     "scripts": {
         "build": "turbo run build",
         "lint": "turbo run lint",

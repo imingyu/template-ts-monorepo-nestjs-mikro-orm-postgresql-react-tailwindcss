@@ -144,3 +144,5 @@ vite.config.ts.timestamp-*
 .vitest
 
 .DB_Store
+
+.turbo

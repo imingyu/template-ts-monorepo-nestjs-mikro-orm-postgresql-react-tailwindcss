@@ -1,0 +1,10 @@
+{
+    "extends": "@mono-ts/config-tools/node.tsconfig.json",
+    "include": ["src/**/*", "test/**/*", "vitest.config.ts"],
+    "compilerOptions": {
+        "rootDir": ".",
+        "noEmit": true,
+        "types": ["node", "vitest/globals"],
+        "experimentalDecorators": true
+    }
+}
