@@ -31,6 +31,7 @@
         "@mikro-orm/decorators": "^7.1.7",
         "@mikro-orm/mysql": "^7.1.7",
         "@mikro-orm/postgresql": "^7.1.7",
+        "@mono-ts/shared": "workspace:*",
         "reflect-metadata": "^0.2.2"
     },
     "devDependencies": {

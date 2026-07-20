@@ -12,6 +12,8 @@
 src/
 	core/
 		contracts.ts                 # 所有适配器无关的请求、响应、上下文与分页契约
+		entities/
+			audited.entity.ts           # UUID、审计人与软删除字段的实体基类
 		errors.ts                    # 通用持久化错误
 	adapters/
 		mikro-orm/
@@ -29,12 +31,25 @@ src/
 			mappers/                    # 受管理实体到公开记录的内部映射
 			repositories/               # 各仓储的 MikroORM 实现
 			index.ts                    # 用户模块公开导出与启动实体集合
+		cms/
+			entities/
+				article.entity.ts          # cms_articles 文章实体与发布状态枚举
+			contracts/                  # 文章公开 DTO 与 ORM 无关仓储接口
+			mappers/                    # 文章实体到公开记录的内部映射
+			repositories/               # 文章仓储的 MikroORM 实现
+			index.ts                    # CMS 模块公开导出与启动实体集合
 	index.ts                       # 包的稳定公开入口
 ```
 
 新增实体时，在 `modules/<实体名>/` 下创建同样的垂直切片。只有确实被多个模块共享且不含业务语义的代码才能进入 `core` 或 `adapters`；不得按全局 `entities/`、`repositories/`、`mappers/` 目录分散同一模块的实现。
 
 用户模块当前包含 `users` 和 `user_profile` 两张表。`user_profile.user_id` 是数据库唯一的一对一外键，`email` 也由数据库唯一约束保护；资料查询必须通过未软删除的 `users` 记录，避免已删除账户的资料重新暴露。
+
+## 实体基类与 CMS
+
+`AuditedEntity` 提供所有业务实体共用的 `id`（UUID）、`createdAt`、`creator`、`updatedAt`、`updater`、`deleted` 和 `deletedAt`。`creator`/`updater` 均关联 `users`，创建人不可为空，更新人允许为空；用户自身继承该基类时，首个初始化用户需要由系统初始化流程提供创建人或使用专门的引导策略。
+
+CMS 模块当前包含 `cms_articles` 表。文章继承 `AuditedEntity`，包含标题、内容与发布状态。发布状态必须复用 `@mono-ts/shared` 提供的 `createEnum` 声明，当前允许 `draft`、`published`、`archived`，默认值为 `draft`；不得用任意字符串绕过该受控集合。CMS 必须和其他模块一样提供公开 DTO、ORM 无关仓储接口、内部映射器及 MikroORM 实现；创建、更新与删除操作从可信 `context.actor` 写入创建人或更新人。
 
 ## 数据库方言
 
@@ -80,6 +95,8 @@ registry.register({
 9. `modules/<实体名>/index.ts` 只导出模块的公开 DTO、仓储契约及可被应用层实例化的适配器实现；映射器等内部细节不从包根入口导出。
 10. 数据库方言选择只能发生在 `adapters/mikro-orm/database.ts` 的启动适配边界；仓储、映射器和公共契约必须保持方言无关。
 11. 账户主信息与可扩展个人资料应拆分为独立实体。`user_profile` 必须通过唯一 `user_id` 关联 `users`，资料仓储不得接受或修改关联用户标识。
+12. 业务实体应继承 `AuditedEntity`，审计关联必须指向 `UserEntity`。创建用户等引导场景不能假装不存在创建人，必须由初始化用例明确处理。
+13. 受控状态字段必须用 `@mono-ts/shared` 的 `createEnum` 声明值集合，并在实体属性类型与默认值中保持一致。
 
 ## 测试要求
 
