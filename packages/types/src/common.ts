@@ -2,8 +2,7 @@
  * 院校业务逻辑层 - 通用类型定义
  */
 
-import { type IEnumPaginationLimit } from '@mono-ts/cross-shared';
-import { type IPrimaryKey } from './base.js';
+import { type IEnumPaginationLimit } from '@mono-ts/shared';
 
 /**
  * 分页查询参数
@@ -49,11 +48,11 @@ export type CreateEntityInput<T> = Omit<
 >;
 
 export interface PrimaryKeyInput {
-    id: IPrimaryKey;
+    id: string;
 }
 
 export interface FindByPrimaryKeyInput {
-    id: IPrimaryKey;
+    id: string;
     includeDeleted?: boolean;
 }
 

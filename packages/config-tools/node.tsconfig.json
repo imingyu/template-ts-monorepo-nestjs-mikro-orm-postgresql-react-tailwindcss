@@ -3,7 +3,7 @@
     "extends": ["./base.tsconfig.json"],
     "compilerOptions": {
         "target": "ES2024",
-        "module": "ESNext",
+        "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "lib": ["ES2024"]
     }

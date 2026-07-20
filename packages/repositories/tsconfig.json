@@ -1,0 +1,11 @@
+{
+    "extends": "@mono-ts/config-tools/node.tsconfig.json",
+    "include": ["src/**/*", "./env.d.ts"],
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "types": ["node"],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
